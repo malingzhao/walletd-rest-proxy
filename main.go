@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/golang/glog"
-	"golang.org/x/net/context"
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"google.golang.org/grpc"
 	"flag"
+	"github.com/golang/glog"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"github.com/theQRL/walletd-rest-proxy/generated"
 	"github.com/theQRL/walletd-rest-proxy/qrlwallet"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 	"net/http"
 )
-
 
 func run(walletServiceEndPoint string, serverIPPort string) error {
 	ctx := context.Background()
@@ -23,10 +23,16 @@ func run(walletServiceEndPoint string, serverIPPort string) error {
 	if err != nil {
 		return err
 	}
+	err = generated.RegisterPublicAPIHandlerFromEndpoint(ctx, mux, walletServiceEndPoint, opts)
+	if err != nil {
+		return err
+	}
+	if err != nil {
+		return err
+	}
 
 	return http.ListenAndServe(serverIPPort, mux)
 }
-
 
 func main() {
 
