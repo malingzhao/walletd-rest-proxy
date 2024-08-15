@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/golang/glog"
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/theQRL/walletd-rest-proxy/generated"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
