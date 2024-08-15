@@ -5,7 +5,6 @@ import (
 	"github.com/golang/glog"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/theQRL/walletd-rest-proxy/generated"
-	"github.com/theQRL/walletd-rest-proxy/qrlwallet"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"net/http"
@@ -19,11 +18,11 @@ func run(walletServiceEndPoint string, serverIPPort string) error {
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 
-	err := qrlwallet.RegisterWalletAPIHandlerFromEndpoint(ctx, mux, walletServiceEndPoint, opts)
-	if err != nil {
-		return err
-	}
-	err = generated.RegisterPublicAPIHandlerFromEndpoint(ctx, mux, walletServiceEndPoint, opts)
+	//err := qrlwallet.RegisterWalletAPIHandlerFromEndpoint(ctx, mux, walletServiceEndPoint, opts)
+	//if err != nil {
+	//	return err
+	//}
+	err := generated.RegisterPublicAPIHandlerFromEndpoint(ctx, mux, walletServiceEndPoint, opts)
 	if err != nil {
 		return err
 	}
